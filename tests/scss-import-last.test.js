@@ -9,21 +9,21 @@ const fixtures = {
       code: ''
     },
     {
-      code: "import a from './foo.js';"
+      code: "import a from './foo';"
     },
     {
       code: (
-        "import a from './foo.js';" +
+        "import a from './foo';" +
         "import './style.scss';"
       )
     },
     {
       code: (
-        "import a from './foo.js';\n" +
-        "import b from './bar.js';\n" +
-        "import c from './baz.js';\n" +
-        "export { hello } from './hello.js'\n" +
-        "export * from './world.js'\n" +
+        "import a from './foo';\n" +
+        "import b from './bar';\n" +
+        "import c from './baz';\n" +
+        "export { hello } from './hello'\n" +
+        "export * from './world'\n" +
         "\n" +
         "import './style.scss';"
       ),
@@ -34,16 +34,16 @@ const fixtures = {
       code: (
         "import './bbb.scss';\n" +
         "import './ccc.scss';\n" +
-        "import a from './foo.js';\n" +
-        "import b from './bar.js';\n" +
-        "import c from './baz.js';\n" +
+        "import a from './foo';\n" +
+        "import b from './bar';\n" +
+        "import c from './baz';\n" +
         "import './aaa.scss';\n"
       ),
       output: (
         "import './ccc.scss';\n" +
-        "import a from './foo.js';\n" +
-        "import b from './bar.js';\n" +
-        "import c from './baz.js';\n" +
+        "import a from './foo';\n" +
+        "import b from './bar';\n" +
+        "import c from './baz';\n" +
         "\n" +
         "import './aaa.scss';\n" +
         "import './bbb.scss';\n"
@@ -56,16 +56,16 @@ const fixtures = {
     {
       code: (
         "import './ccc.scss';\n" +
-        "import a from './foo.js';\n" +
-        "import b from './bar.js';\n" +
-        "import c from './baz.js';\n" +
+        "import a from './foo';\n" +
+        "import b from './bar';\n" +
+        "import c from './baz';\n" +
         "import './aaa.scss';\n" +
         "import './bbb.scss';\n"
       ),
       output: (
-        "import a from './foo.js';\n" +
-        "import b from './bar.js';\n" +
-        "import c from './baz.js';\n" +
+        "import a from './foo';\n" +
+        "import b from './bar';\n" +
+        "import c from './baz';\n" +
         "\n" +
         "import './aaa.scss';\n" +
         "import './bbb.scss';\n" +
@@ -78,18 +78,18 @@ const fixtures = {
     {
       code: (
         "import './aaa.scss';\n" +
-        "import a from './foo.js';\n" +
+        "import a from './foo';\n" +
         "import './bbb.scss';\n" +
-        "import b from './bar.js';\n" +
+        "import b from './bar';\n" +
         "import './ccc.scss';\n" +
-        "import c from './baz.js';\n"
+        "import c from './baz';\n"
       ),
       output: (
-        "import a from './foo.js';\n" +
+        "import a from './foo';\n" +
         "import './bbb.scss';\n" +
-        "import b from './bar.js';\n" +
+        "import b from './bar';\n" +
         "import './ccc.scss';\n" +
-        "import c from './baz.js';\n" +
+        "import c from './baz';\n" +
         "\n" +
         "import './aaa.scss';\n"
       ),
@@ -106,16 +106,16 @@ const fixtures = {
           "one,\n" +
           "two,\n" +
           "three,\n" +
-        "} from './foo.js';\n" +
-        "export * from './foo.js';\n"
+        "} from './foo';\n" +
+        "export * from './foo';\n"
       ),
       output: (
         "export {" +
           "one,\n" +
           "two,\n" +
           "three,\n" +
-        "} from './foo.js';\n" +
-        "export * from './foo.js';\n" +
+        "} from './foo';\n" +
+        "export * from './foo';\n" +
         "\n" +
         "import './aaa.scss';\n"
       ),
