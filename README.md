@@ -12,13 +12,13 @@ or
 yarn add --dev eslint-plugin-scss-import-last
 ```
 
-.eslintrc
+.eslintrc.js
 ```
 {
-  "plugins": [
-    "scss-import-last"
+  plugins: [
+    'scss-import-last'
   ],
-  "rules": {
+  rules: {
     'scss-import-last/scss-import-last': 'warn',
   }
 }
