@@ -22,6 +22,8 @@ const fixtures = {
         "import a from './foo.js';\n" +
         "import b from './bar.js';\n" +
         "import c from './baz.js';\n" +
+        "export { hello } from './hello.js'\n" +
+        "export * from './world.js'\n" +
         "\n" +
         "import './style.scss';"
       ),
@@ -95,6 +97,30 @@ const fixtures = {
         { message: 'SCSS import must be last: ./aaa.scss' },
         { message: 'SCSS import must be last: ./bbb.scss' },
         { message: 'SCSS import must be last: ./ccc.scss' }
+      ],
+    },
+    {
+      code: (
+        "import './aaa.scss';\n" +
+        "export {" +
+          "one,\n" +
+          "two,\n" +
+          "three,\n" +
+        "} from './foo.js';\n" +
+        "export * from './foo.js';\n"
+      ),
+      output: (
+        "export {" +
+          "one,\n" +
+          "two,\n" +
+          "three,\n" +
+        "} from './foo.js';\n" +
+        "export * from './foo.js';\n" +
+        "\n" +
+        "import './aaa.scss';\n"
+      ),
+      errors: [
+        { message: 'SCSS import must be last: ./aaa.scss' },
       ],
     },
   ]
