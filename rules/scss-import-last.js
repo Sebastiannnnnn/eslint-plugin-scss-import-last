@@ -50,12 +50,6 @@ module.exports = {
               message: `SCSS import must be last: ${node.source.value}`,
               node,
               fix: fixer => {
-                const firstExport = sourceCode.ast.body.find((n) => ['ExportNamedDeclaration', 'ExportAllDeclaration'].includes(n.type));
-                const lastImport = imports[imports.length - 1];
-                if (firstExport && lastImport.range[0] > firstExport.range[1]) {
-                  return;
-                }
-
                 const sourceCodeAsText = sourceCode.getText();
                 const mapNodesToString = (items, scssImportsAtBottom) => items.map((item, i) => {
                   if ((items.length - scssImportsAtBottom) === i) {

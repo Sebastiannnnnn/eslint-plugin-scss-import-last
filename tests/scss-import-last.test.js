@@ -120,22 +120,7 @@ const fixtures = {
       errors: [
         { message: 'SCSS import must be last: ./aaa.scss' },
       ],
-    },
-    {
-      code: (
-        "import './aaa.scss';\n" +
-        "export { test } from './test'\n" +
-        "import * as Foo from './bar';"
-      ),
-      output: (
-        "import './aaa.scss';\n" +
-        "export { test } from './test'\n" +
-        "import * as Foo from './bar';"
-      ),
-      errors: [
-        { message: 'SCSS import must be last: ./aaa.scss' },
-      ],
-    },
+    }
   ]
 }
 
