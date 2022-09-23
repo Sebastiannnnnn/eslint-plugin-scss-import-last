@@ -4,7 +4,8 @@
   "keywords": [
     "eslint",
     "eslint-plugin",
-    "import"
+    "import",
+    "scss"
   ],
   "version": "1.0.4",
   "private": false,
