@@ -1,0 +1,1 @@
+# eslint-plugin-scss-import-last
