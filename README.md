@@ -19,7 +19,7 @@ yarn add --dev eslint-plugin-scss-import-last
     'scss-import-last'
   ],
   rules: {
-    'scss-import-last/scss-import-last': 'warn',
+    'scss-import-last/scss-import-last': 'error',
   }
 }
 ```
