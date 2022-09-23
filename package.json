@@ -1,6 +1,12 @@
 {
   "name": "eslint-plugin-scss-import-last",
-  "version": "1.0.0",
+  "description": "Rule to sort scss imports as last",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "import"
+  ],
+  "version": "1.0.3",
   "private": false,
   "main": "index.js",
   "license": "MIT",
