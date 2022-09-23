@@ -1,6 +1,6 @@
 # eslint-plugin-scss-import-last
 
-Rule to sort scss imports, so they're the last ones with one empty line before them. Any other empty lines between imports will be deleted.
+Rule to sort scss imports, so they're the last ones with one empty line before them. Any other empty lines between imports will be deleted. Currently, no support for mixed imports and exports.
 
 ## Usage
 
