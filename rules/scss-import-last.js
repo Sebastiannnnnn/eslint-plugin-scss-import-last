@@ -12,8 +12,7 @@ module.exports = {
   },
   create: context => {
     const sourceCode = context.getSourceCode();
-    const targetedTypes = ['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration'];
-    const imports = sourceCode.ast.body.filter(n => targetedTypes.includes(n.type));
+    const imports = sourceCode.ast.body.filter(n => n.type === 'ImportDeclaration');
 
     let lastFileProcessed = undefined;
     return {
@@ -51,6 +50,12 @@ module.exports = {
               message: `SCSS import must be last: ${node.source.value}`,
               node,
               fix: fixer => {
+                const firstExport = sourceCode.ast.body.find((n) => ['ExportNamedDeclaration', 'ExportAllDeclaration'].includes(n.type));
+                const lastImport = imports[imports.length - 1];
+                if (firstExport && lastImport.range[0] > firstExport.range[1]) {
+                  return;
+                }
+
                 const sourceCodeAsText = sourceCode.getText();
                 const mapNodesToString = (items, scssImportsAtBottom) => items.map((item, i) => {
                   if ((items.length - scssImportsAtBottom) === i) {
