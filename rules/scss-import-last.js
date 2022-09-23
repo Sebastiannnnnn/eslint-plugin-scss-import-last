@@ -12,7 +12,8 @@ module.exports = {
   },
   create: context => {
     const sourceCode = context.getSourceCode();
-    const imports = sourceCode.ast.body.filter(n => n.type === 'ImportDeclaration');
+    const targetedTypes = ['ImportDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration'];
+    const imports = sourceCode.ast.body.filter(n => targetedTypes.includes(n.type));
 
     let lastFileProcessed = undefined;
     return {
