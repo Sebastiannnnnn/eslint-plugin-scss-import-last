@@ -8,11 +8,12 @@ module.exports = {
     docs: {
       description: 'SCSS imports should be last',
     },
-    schema: [], // This rule has no options
+    schema: [],
   },
   create: context => {
+    const target = 'ImportDeclaration';
     const sourceCode = context.getSourceCode();
-    const imports = sourceCode.ast.body.filter(n => n.type === 'ImportDeclaration');
+    const imports = sourceCode.ast.body.filter(n => n.type === target);
 
     let lastFileProcessed = undefined;
     return {
@@ -50,6 +51,12 @@ module.exports = {
               message: `SCSS import must be last: ${node.source.value}`,
               node,
               fix: fixer => {
+                const firstOtherDeclaration = sourceCode.ast.body.find(n => n.type !== target)
+                const lastImportDeclaration = imports[imports.length - 1];
+                if (firstOtherDeclaration && firstOtherDeclaration.range[1] < lastImportDeclaration.range[0]) {
+                  return;
+                }
+
                 const sourceCodeAsText = sourceCode.getText();
                 const mapNodesToString = (items, scssImportsAtBottom) => items.map((item, i) => {
                   if ((items.length - scssImportsAtBottom) === i) {
