@@ -19,9 +19,9 @@ const fixtures = {
     },
     {
       code: (
-        "import a from './foo';\n" +
-        "import b from './bar';\n" +
-        "import c from './baz';\n" +
+        "import a from './a';\n" +
+        "import b from './b';\n" +
+        "import c from './c';\n" +
         "\n" +
         "import './style.scss';"
       ),
@@ -30,126 +30,126 @@ const fixtures = {
   invalid: [
     {
       code: (
-        "import './bbb.scss';\n" +
-        "import './ccc.scss';\n" +
-        "import a from './foo';\n" +
-        "import b from './bar';\n" +
-        "import c from './baz';\n" +
-        "import './aaa.scss';"
+        "import './a.scss';\n" +
+        "import a from './a';\n" +
+        "import './b.scss';\n" +
+        "import { b } from './b';\n" +
+        "import './c.scss';\n" +
+        "import c from './c';"
       ),
       output: (
-        "import './ccc.scss';\n" +
-        "import a from './foo';\n" +
-        "import b from './bar';\n" +
-        "import c from './baz';\n" +
+        "import a from './a';\n" +
+        "import './b.scss';\n" +
+        "import { b } from './b';\n" +
+        "import './c.scss';\n" +
+        "import c from './c';\n" +
         "\n" +
-        "import './aaa.scss';\n" +
-        "import './bbb.scss';"
+        "import './a.scss';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./bbb.scss' },
-        { message: 'SCSS import must be last: ./ccc.scss' },
+        { message: 'SCSS import must be last: ./a.scss' },
+        { message: 'SCSS import must be last: ./b.scss' },
+        { message: 'SCSS import must be last: ./c.scss' }
       ],
     },
     {
       code: (
-        "import './ccc.scss';\n" +
-        "import a from './foo';\n" +
-        "import b from './bar';\n" +
-        "import c from './baz';\n" +
-        "import './aaa.scss';\n" +
-        "import './bbb.scss';"
+        "import './b.scss';\n" +
+        "import './c.scss';\n" +
+        "import a from './a';\n" +
+        "import b from './b';\n" +
+        "import c from './c';\n" +
+        "import './a.scss';"
       ),
       output: (
-        "import a from './foo';\n" +
-        "import b from './bar';\n" +
-        "import c from './baz';\n" +
+        "import './c.scss';\n" +
+        "import a from './a';\n" +
+        "import b from './b';\n" +
+        "import c from './c';\n" +
         "\n" +
-        "import './aaa.scss';\n" +
-        "import './bbb.scss';\n" +
-        "import './ccc.scss';"
+        "import './a.scss';\n" +
+        "import './b.scss';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./ccc.scss' },
+        { message: 'SCSS import must be last: ./b.scss' },
+        { message: 'SCSS import must be last: ./c.scss' },
       ],
     },
     {
       code: (
-        "import './aaa.scss';\n" +
-        "import a from './foo';\n" +
-        "import './bbb.scss';\n" +
-        "import b from './bar';\n" +
-        "import './ccc.scss';\n" +
-        "import c from './baz';"
+        "import './c.scss';\n" +
+        "import a from './a';\n" +
+        "import { b } from './b';\n" +
+        "import c from './c';\n" +
+        "import './a.scss';\n" +
+        "import './b.scss';"
       ),
       output: (
-        "import a from './foo';\n" +
-        "import './bbb.scss';\n" +
-        "import b from './bar';\n" +
-        "import './ccc.scss';\n" +
-        "import c from './baz';\n" +
+        "import a from './a';\n" +
+        "import { b } from './b';\n" +
+        "import c from './c';\n" +
         "\n" +
-        "import './aaa.scss';"
+        "import './a.scss';\n" +
+        "import './b.scss';\n" +
+        "import './c.scss';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./aaa.scss' },
-        { message: 'SCSS import must be last: ./bbb.scss' },
-        { message: 'SCSS import must be last: ./ccc.scss' }
+        { message: 'SCSS import must be last: ./c.scss' },
       ],
     },
     {
       code: (
         "import {\n" +
-          "one,\n" +
-          "two,\n" +
-          "three\n" +
-        "} from './foo';\n" +
-        "import './aaa.scss';\n" +
-        "import * as Foo from './bar';"
+          "a,\n" +
+          "b,\n" +
+          "c\n" +
+        "} from './abc';\n" +
+        "import './a.scss';\n" +
+        "import * as foo from './foo';"
       ),
       output: (
         "import {\n" +
-          "one,\n" +
-          "two,\n" +
-          "three\n" +
-        "} from './foo';\n" +
-        "import * as Foo from './bar';\n" +
+          "a,\n" +
+          "b,\n" +
+          "c\n" +
+        "} from './abc';\n" +
+        "import * as foo from './foo';\n" +
         "\n" +
-        "import './aaa.scss';"
+        "import './a.scss';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./aaa.scss' },
+        { message: 'SCSS import must be last: ./a.scss' },
       ],
     },
     {
       code: (
-        "import './aaa.scss';\n" +
-        "import a from './foo';\n" +
-        "export { b } from './bar';"
+        "import './a.scss';\n" +
+        "import a from './a';\n" +
+        "export { b } from './b';"
       ),
       output: (
-        "import a from './foo';\n" +
+        "import a from './a';\n" +
         "\n" +
-        "import './aaa.scss';\n" +
-        "export { b } from './bar';"
+        "import './a.scss';\n" +
+        "export { b } from './b';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./aaa.scss' }
+        { message: 'SCSS import must be last: ./a.scss' }
       ],
     },
     {
       code: (
-        "import './aaa.scss';\n" +
-        "export { b } from './bar';\n" +
-        "import a from './foo';"
+        "import './a.scss';\n" +
+        "export { b } from './b';\n" +
+        "import a from './a';"
       ),
       output: (
-        "import './aaa.scss';\n" +
-        "export { b } from './bar';\n" +
-        "import a from './foo';"
+        "import './a.scss';\n" +
+        "export { b } from './b';\n" +
+        "import a from './a';"
       ),
       errors: [
-        { message: 'SCSS import must be last: ./aaa.scss' }
+        { message: 'SCSS import must be last: ./a.scss' }
       ],
     },
   ]
